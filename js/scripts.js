@@ -38,19 +38,43 @@ $(function() {
 
   $('#Thursday').click(function() {
     $('#movie1').text('Interstellar');
-    $('.times1 .showtime1').text('1600');
+    $('.showtime .times1 .showtime1').text('1600');
     $('.times1 .showtime2').text('1900');
     $('.times1 .showtime3').text('2130');
+
+
+
+    $('#movie2').text('Gone Girl');
+    $('.times2 .showtime1').text('1400');
+    $('.times2 .showtime2').text('1700');
+    $('.times2 .showtime3').text('2000');
+
+    $('#movie3').text('The SpongeBob Squarepants Musical');
+    $('.times3 .showtime1').text('1000');
+    $('.times3 .showtime2').text('1400');
+    $('.times3 .showtime3').text('1830');
+
+
+
+
+
 
     newTicket.day = 'Thursday';
     $("#ticket-day").text(newTicket.day);
 
-    $('.times1 .showtime1').click(function () {
-      newTicket.movieName = $('#movie1').text();
-      newTicket.showtime = parseInt($(this).text());
-      $("#ticket-showtime").text(newTicket.showtime);
-      $("#ticket-movie").text(newTicket.movieName);
-    });
+// Populating showtimes of movie1
+  for (var m = 1; m < 4; m++) {
+    for (var i = 1; i < 4; i++) {
+    var title = '#movie' + m;
+    // alert(title);
+      $('.times' + m + ' .showtime' + i).click(function () {
+        newTicket.movieName = $(title).text();
+        newTicket.showtime = parseInt($(this).text());
+        $("#ticket-showtime").text(newTicket.showtime);
+        $("#ticket-movie").text(newTicket.movieName);
+      });
+    }
+  }
 
     $('#calculate-price').submit(function(event) {
       event.preventDefault();
@@ -66,16 +90,5 @@ $(function() {
     });
 
   });
-
-  // $('#Wednesday').click(function() {
-  //   newTicket.movieName = 'Gone Girl';
-  //   $('#movie-options h2').text(newTicket.movieName);
-  //   $('.showtime1').text('3 pm');
-  // });
-  //
-  // $('#Friday').click(function() {
-  //   $('#movie-options h2').text(newTicket.movieName);
-  //   $('.showtime1').text('4 pm');
-  // });
 
 })
