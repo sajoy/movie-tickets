@@ -9,7 +9,62 @@
   </head>
   <body>
     <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="btn-group" role="group" aria-label="...">
+            <button type="button" id="Sunday" class="btn btn-default">Sunday</button>
+            <button type="button" id="Monday" class="btn btn-default">Monday</button>
+            <button type="button" id="Tuesday" class="btn btn-default">Tuesday</button>
+            <button type="button" id="Wednesday" class="btn btn-default">Wednesday</button>
+            <button type="button" id="Thursday" class="btn btn-default">Thursday</button>
+            <button type="button" id="Friday" class="btn btn-default">Friday</button>
+            <button type="button" id="Saturday" class="btn btn-default">Saturday</button>
+          </div>
+          <div id="movie-options">
+            <ul>
+              <li>
+                <h2 id='movie1'></h2>
+                <ul class="times1">
+                  <li> <span class="showtime1"></span>  </li>
+                  <li> <span class="showtime2"></span>  </li>
+                  <li> <span class="showtime3"></span>  </li>
+                </ul>
+              </li>
+              <li>
+                <h2 id='movie2'></h2>
+                <ul class="times">
+                  <li> <span class="showtime1"></span>  </li>
+                  <li> <span class="showtime2"></span>  </li>
+                  <li> <span class="showtime3"></span>  </li>
+                </ul>
+              </li>
+              <li>
+                <h2 id='movie3'></h2>
+                <ul class="times">
+                  <li> <span class="showtime1"></span>  </li>
+                  <li> <span class="showtime2"></span>  </li>
+                  <li> <span class="showtime3"></span>  </li>
+                </ul>
+              </li>
+            </ul>
 
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div id="show-price">
+            <h2>Your Ticket Info:</h2>
+            Day: <span id="ticket-day"></span><br>
+            Movie: <span id="ticket-movie"></span><br>
+            Time: <span id="ticket-showtime"></span><br>
+            <form id="calculate-price">
+              <label for="input-age">Enter your age</label>
+              <input type="text" id='input-age'>
+              <button type='submit' class='btn btn-success'>Go!</button>
+            </form>
+            Cost: $<span id='final-price'></span>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
