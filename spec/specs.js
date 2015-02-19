@@ -23,43 +23,23 @@ describe('Ticket', function() {
     });
   });
 
-  describe('showtime', function() {
-    it('will return the time of the show', function() {
-      var newTicket = Object.create(Ticket);
-      newTicket.showtime = 1800;
-      expect(newTicket.showtime).to.equal(1800);
-    });
-  });
-
   describe('isMatinee', function() {
     it('will return true if the movie is before 1800', function() {
       var newTicket = Object.create(Ticket);
-      newTicket.showtime = 2000;
+      var newMovie = Object.create(Movie);
+      newTicket.movie = newMovie;
+      newTicket.movie.showtime = 2000;
       expect(newTicket.isMatinee()).to.equal(false);
-    });
-  });
-
-  describe('day', function() {
-    it('will return the day of the show', function() {
-      var newTicket = Object.create(Ticket);
-      newTicket.day = "Monday";
-      expect(newTicket.day).to.equal("Monday");
     });
   });
 
   describe('isWeekend', function() {
     it('will return if true if it is the weekend!', function () {
       var newTicket = Object.create(Ticket);
-      newTicket.day = "Friday";
+      var newMovie = Object.create(Movie);
+      newTicket.movie = newMovie;
+      newTicket.movie.day = "Friday";
       expect(newTicket.isWeekend()).to.equal(true);
-    });
-  });
-
-  describe('movieName', function() {
-    it('will return the name of the show', function() {
-      var newTicket = Object.create(Ticket);
-      newTicket.movieName = "Interstellar";
-      expect(newTicket.movieName).to.equal("Interstellar");
     });
   });
 
@@ -86,13 +66,50 @@ describe('Ticket', function() {
 
     it('will be $3 for the matinee', function() {
       var newTicket = Object.create(Ticket);
-      newTicket.showtime = 1200;
+      var newMovie = Object.create(Movie);
+      newTicket.movie = newMovie;
+      newTicket.movie.showtime = 1200;
       expect(newTicket.whatPrice()).to.equal(3);
     });
 
     it('will be $4 for everyone else', function() {
       var newTicket = Object.create(Ticket);
+      var newMovie = Object.create(Movie);
+      newTicket.movie = newMovie;
       expect(newTicket.whatPrice()).to.equal(4);
+    });
+  });
+
+// Movie related specs
+
+  describe('movie', function() {
+    it('will return a Move object', function (){
+      var newTicket = Object.create(Ticket);
+      var newMovie = Object.create(Movie);
+      newMovie.name = "Interstellar";
+      newTicket.movie = newMovie;
+      expect(newTicket.movie.name).to.equal("Interstellar");
+    });
+
+  });
+
+  describe('showtime', function() {
+    it('will return the time of the show', function() {
+      var newTicket = Object.create(Ticket);
+      var newMovie = Object.create(Movie);
+      newMovie.showtime = 1800;
+      newTicket.movie = newMovie;
+      expect(newTicket.movie.showtime).to.equal(1800);
+    });
+  });
+
+  describe('day', function() {
+    it('will return the day of the show', function() {
+      var newTicket = Object.create(Ticket);
+      var newMovie = Object.create(Movie);
+      newMovie.day = "Monday";
+      newTicket.movie = newMovie;
+      expect(newTicket.movie.day).to.equal("Monday");
     });
   });
 });

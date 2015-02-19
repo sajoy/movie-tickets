@@ -14,10 +14,10 @@ var Ticket = {
      }
    },
    isMatinee: function() {
-     return (this.showtime < 1800) ? true : false;
+     return (this.movie.showtime < 1800) ? true : false;
    },
    isWeekend: function() {
-     return (this.day === 'Friday' || this.day === 'Saturday' || this.day === 'Sunday') ? true : false;
+     return (this.movie.day === 'Friday' || this.movie.day === 'Saturday' || this.movie.day === 'Sunday') ? true : false;
    },
    whatPrice: function() {
      if (this.isYoung()) {
@@ -30,39 +30,63 @@ var Ticket = {
    }
 };
 
+var Movie = {};
+
 
 $(function() {
   var newTicket = Object.create(Ticket);
 
-  $("#movie-options h2").text(newTicket.movieName);
+  var movie1 = Object.create(Movie);
+  movie1.name = "Interstellar";
+  movie1.showtimes = [1400, 1600,1830];
 
-  $('#Thursday').click(function() {
-    $('#movie1').text('Interstellar');
-    $('.showtime .times1 .showtime1').text('1600');
-    $('.times1 .showtime2').text('1900');
-    $('.times1 .showtime3').text('2130');
+  var movie2 = Object.create(Movie);
+  movie2.name = "Gone Girl";
+  movie2.showtimes = [1410, 1700,2000];
 
+  var movie3 = Object.create(Movie);
+  movie3.name = "SpongeBob Squarepants the Musical";
+  movie3.showtimes = [1000, 1400,1730];
 
-
-    $('#movie2').text('Gone Girl');
-    $('.times2 .showtime1').text('1400');
-    $('.times2 .showtime2').text('1700');
-    $('.times2 .showtime3').text('2000');
-
-    $('#movie3').text('The SpongeBob Squarepants Musical');
-    $('.times3 .showtime1').text('1000');
-    $('.times3 .showtime2').text('1400');
-    $('.times3 .showtime3').text('1830');
+  var movies = [movie1, movie2, movie3];
 
 
+  $('#day5').click(function() {
+    var content = "";
+
+    for (var i = 0; i < 3; i++) {
+
+      content = "<div class='movie'> <h2>";
+      content += movies[i].name;
+      content += "</h2>";
+
+      movies[i].showtimes.forEach(function(movieTime) {
+        content +="<span class='showtime'>" + movieTime + "</span><br>";
+      });
+
+      content += "</div>";
+
+      $('#movie-options').append(content);
+    }
 
 
 
 
-    newTicket.day = 'Thursday';
-    $("#ticket-day").text(newTicket.day);
 
 // Populating showtimes of movie1
+
+  $('.showtime').each(function() {
+    $(this).click(function() {
+      newTicket.showtime = this.innerHTML;
+      $("#ticket-showtime").text(newTicket.showtime);
+      newTicket.day = 'Thursday';
+      $("#ticket-day").text(newTicket.day);
+      alert(this.parent);
+    });
+  });
+
+
+
   for (var m = 1; m < 4; m++) {
     for (var i = 1; i < 4; i++) {
     var title = '#movie' + m;
